@@ -1,0 +1,30 @@
+{
+    "name": "jlh/guzzle-formatter",
+    "description": "PHP Guzzle request/response to HTTP request/response formatter",
+    "keywords": [ "guzzle", "http", "formatting", "formatter" ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joep Hoffland",
+            "email": "joephoffland@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/joephoffland/guzzle-formatter",
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "GuzzleFormatter\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GuzzleFormatter\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
