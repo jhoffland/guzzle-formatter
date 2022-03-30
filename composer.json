@@ -1,5 +1,5 @@
 {
-    "name": "jlh/guzzle-formatter",
+    "name": "jhoffland/guzzle-formatter",
     "description": "PHP Guzzle request/response to HTTP request/response formatter",
     "keywords": [ "guzzle", "http", "formatting", "formatter" ],
     "type": "library",
