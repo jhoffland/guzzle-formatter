@@ -28,13 +28,13 @@ class RequestFormatterTest extends TestCase
 
                 "GET /search?q=guzzle+php HTTP/1.1" . PHP_EOL .
                 "Host: www.google.com" . PHP_EOL .
-                "User-Agent: GuzzleFormatterTest/1.0"
+                "User-Agent: GuzzleFormatterTest/1.0",
             ],
             [
                 new Request('HEAD', 'https://www.google.com/search#test', []),
 
                 "HEAD /search HTTP/1.1" . PHP_EOL .
-                "Host: www.google.com"
+                "Host: www.google.com",
             ],
             [
                 new Request('POST', 'https://www.google.com/search',
@@ -46,8 +46,9 @@ class RequestFormatterTest extends TestCase
                 "Content-Type: application/json" . PHP_EOL .
                 "Content-Length: 18" . PHP_EOL .
                 PHP_EOL .
-                "{ \"type\": \"test\" }"
-            ]
+                "{ \"type\": \"test\" }",
+            ],
         ];
     }
+
 }

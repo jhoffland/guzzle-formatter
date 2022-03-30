@@ -20,7 +20,7 @@ abstract class Formatter
         $httpMessage .= $this->headers($message);
 
         $body = $this->body($message);
-        if (!is_null($body)) {
+        if (! is_null($body)) {
             $httpMessage .= $this->eol . $this->eol;
             $httpMessage .= $body;
         }
@@ -58,4 +58,5 @@ abstract class Formatter
 
         return strlen($bodyContent) > 0 ? $bodyContent : null;
     }
+
 }

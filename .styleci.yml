@@ -4,5 +4,7 @@ enabled:
   - concat_with_spaces
 disabled:
   - concat_without_spaces
+  - single_quote
+  - function_declaration
 finder:
   name: "*.php"

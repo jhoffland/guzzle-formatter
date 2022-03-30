@@ -23,13 +23,13 @@ class HttpFormatterMiddlewareTest extends TestCase
 
         $client = new Client([
             'handler' => $handlerStack,
-            'verify' => false
+            'verify' => false,
         ]);
-        
+
         $client->post('https://www.google.com/search', [
             'json' => [
-                'type' => 'test'
-            ]
+                'type' => 'test',
+            ],
         ]);
 
         $this->assertStringMatchesFormatFile(
@@ -47,20 +47,20 @@ class HttpFormatterMiddlewareTest extends TestCase
 
         $mockHandler = new MockHandler([
             new Response(201),
-            new Response(400, ['Content-Length' => 13], 'Unknown page.')
+            new Response(400, ['Content-Length' => 13], 'Unknown page.'),
         ]);
         $handlerStack = HandlerStack::create($mockHandler);
         $handlerStack->after('allow_redirects', $middleware->responses());
 
         $client = new Client([
             'handler' => $handlerStack,
-            'verify' => false
+            'verify' => false,
         ]);
 
         $client->post('https://www.google.com/search', [
             'json' => [
-                'type' => 'test'
-            ]
+                'type' => 'test',
+            ],
         ]);
 
         try {
@@ -80,4 +80,5 @@ class HttpFormatterMiddlewareTest extends TestCase
     {
         return sprintf('%s/results/%s%s', __DIR__, $actual ? 'actual/' : '', $path);
     }
+
 }

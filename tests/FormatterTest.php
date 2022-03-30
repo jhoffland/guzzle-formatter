@@ -33,4 +33,5 @@ class FormatterTest extends TestCase
 
         $this->assertSame($expectedFormat, $formattedRequest);
     }
+
 }

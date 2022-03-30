@@ -32,4 +32,5 @@ class RequestFormatter extends Formatter
         return $path . $query;
 
     }
+
 }
