@@ -29,5 +29,4 @@ class HttpFormatterMiddleware extends FormatterMiddleware
             return $response;
         });
     }
-
 }

@@ -58,5 +58,4 @@ abstract class Formatter
 
         return strlen($bodyContent) > 0 ? $bodyContent : null;
     }
-
 }

@@ -30,7 +30,5 @@ class RequestFormatter extends Formatter
         $query = $query ? '?' . $query : '';
 
         return $path . $query;
-
     }
-
 }

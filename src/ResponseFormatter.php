@@ -19,6 +19,4 @@ class ResponseFormatter extends Formatter
             $response->getReasonPhrase()
         );
     }
-
-
 }

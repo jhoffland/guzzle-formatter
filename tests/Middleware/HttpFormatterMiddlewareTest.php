@@ -80,5 +80,4 @@ class HttpFormatterMiddlewareTest extends TestCase
     {
         return sprintf('%s/results/%s%s', __DIR__, $actual ? 'actual/' : '', $path);
     }
-
 }
