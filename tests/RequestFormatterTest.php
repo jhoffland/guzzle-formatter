@@ -26,14 +26,14 @@ class RequestFormatterTest extends TestCase
                 new Request('GET', 'https://www.google.com/search?q=guzzle+php',
                     ['User-Agent' => 'GuzzleFormatterTest/1.0']),
 
-                "GET /search?q=guzzle+php HTTP/1.1" . PHP_EOL .
-                "Host: www.google.com" . PHP_EOL .
+                "GET /search?q=guzzle+php HTTP/1.1" . FormatterTest::DEFAULT_EOL .
+                "Host: www.google.com" . FormatterTest::DEFAULT_EOL .
                 "User-Agent: GuzzleFormatterTest/1.0",
             ],
             [
                 new Request('HEAD', 'https://www.google.com/search#test', []),
 
-                "HEAD /search HTTP/1.1" . PHP_EOL .
+                "HEAD /search HTTP/1.1" . FormatterTest::DEFAULT_EOL .
                 "Host: www.google.com",
             ],
             [
@@ -41,11 +41,11 @@ class RequestFormatterTest extends TestCase
                     ['Content-Type' => 'application/json', 'Content-Length' => 18],
                     "{ \"type\": \"test\" }"),
 
-                "POST /search HTTP/1.1" . PHP_EOL .
-                "Host: www.google.com" . PHP_EOL .
-                "Content-Type: application/json" . PHP_EOL .
-                "Content-Length: 18" . PHP_EOL .
-                PHP_EOL .
+                "POST /search HTTP/1.1" . FormatterTest::DEFAULT_EOL .
+                "Host: www.google.com" . FormatterTest::DEFAULT_EOL .
+                "Content-Type: application/json" . FormatterTest::DEFAULT_EOL .
+                "Content-Length: 18" . FormatterTest::DEFAULT_EOL .
+                FormatterTest::DEFAULT_EOL .
                 "{ \"type\": \"test\" }",
             ],
         ];

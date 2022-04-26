@@ -8,9 +8,11 @@ use PHPUnit\Framework\TestCase;
 
 class FormatterTest extends TestCase
 {
+    const DEFAULT_EOL = "\r\n";
+
     public function testEol()
     {
-        $eol = "/r/n";
+        $eol = PHP_EOL;
 
         $requestFormatter = new RequestFormatter($eol);
 

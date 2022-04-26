@@ -1,7 +1,7 @@
 # Guzzle Formatter
 
-![Tests status](https://github.com/joephoffland/guzzle-formatter/actions/workflows/testing.yml/badge.svg)
-![StyleCI status](https://github.styleci.io/repos/470917304/shield?style=flat&branch=main)
+[![Tests status](https://github.com/joephoffland/guzzle-formatter/actions/workflows/testing.yml/badge.svg)](https://github.com/jhoffland/guzzle-formatter/actions/workflows/testing.yml)
+[![StyleCI status](https://github.styleci.io/repos/470917304/shield?style=flat&branch=main)](https://github.styleci.io/repos/470917304?branch=main)
 
 PHP library for formatting Guzzle requests and responses to [HTTP messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages).
 
@@ -46,8 +46,8 @@ $formatterMiddleware = new HttpFormatterMiddleware('/path/to/output-file.txt');
 
 $handlerStack = HandlerStack::create();
 
-$handlerStack->after('prepare_body', $formatterMiddleware->requests());
-$handlerStack->after('allow_redirects', $formatterMiddleware->responses());
+$handlerStack->after('prepare_body', $formatterMiddleware->requests(), 'http_request_formatter');
+$handlerStack->after('prepare_body', $formatterMiddleware->responses(), 'http_response_formatter');
 
 $client = new Client([
     'handler' => $handlerStack,

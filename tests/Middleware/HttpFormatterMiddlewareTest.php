@@ -50,7 +50,7 @@ class HttpFormatterMiddlewareTest extends TestCase
             new Response(400, ['Content-Length' => 13], 'Unknown page.'),
         ]);
         $handlerStack = HandlerStack::create($mockHandler);
-        $handlerStack->after('allow_redirects', $middleware->responses());
+        $handlerStack->after('prepare_body', $middleware->responses());
 
         $client = new Client([
             'handler' => $handlerStack,
@@ -70,6 +70,35 @@ class HttpFormatterMiddlewareTest extends TestCase
 
         $this->assertStringMatchesFormatFile(
             $this->filePathInDirectory('expected-http-responses.txt', false),
+            file_get_contents($resultFilePath)
+        );
+
+        unlink($resultFilePath);
+    }
+
+    public function testBoth()
+    {
+        $resultFilePath = $this->filePathInDirectory(sprintf('http-both-%u.txt', time()), true);
+        $middleware = new HttpFormatterMiddleware($resultFilePath);
+
+        $mockHandler = new MockHandler([new Response(200)]);
+        $handlerStack = HandlerStack::create($mockHandler);
+        $handlerStack->after('prepare_body', $middleware->requests());
+        $handlerStack->after('prepare_body', $middleware->responses());
+
+        $client = new Client([
+            'handler' => $handlerStack,
+            'verify' => false,
+        ]);
+
+        $client->post('https://www.google.com/search', [
+            'json' => [
+                'type' => 'test',
+            ],
+        ]);
+
+        $this->assertStringMatchesFormatFile(
+            $this->filePathInDirectory('expected-http-both.txt', false),
             file_get_contents($resultFilePath)
         );
 

@@ -6,9 +6,11 @@ use Psr\Http\Message\MessageInterface;
 
 abstract class Formatter
 {
+    const DEFAULT_EOL = "\r\n";
+
     protected string $eol;
 
-    public function __construct($eol = PHP_EOL)
+    public function __construct($eol = self::DEFAULT_EOL)
     {
         $this->eol = $eol;
     }
