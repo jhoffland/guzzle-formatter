@@ -71,7 +71,6 @@ When opening a pull request, please make sure that:
 - The [StyleCI](https://github.styleci.io/repos/470917304) analysis pass;
 - The PHPUnit tests pass.
 
-## ToDo
+## ToDo's
 
-- [ ] Test and (if currently not working properly) add support for cookies.
 - [ ] Add cURL formatter.
