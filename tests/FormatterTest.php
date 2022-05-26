@@ -23,9 +23,9 @@ class FormatterTest extends TestCase
             "{ \"type\": \"test\" }"
         );
 
-        $formattedRequest = $requestFormatter->http($request);
+        $actualFormattedRequest = $requestFormatter->http($request);
 
-        $expectedFormat =
+        $expectedFormattedRequest =
             "POST /search HTTP/1.1" . $eol .
             "Host: www.google.com" . $eol .
             "Content-Type: application/json" . $eol .
@@ -33,6 +33,6 @@ class FormatterTest extends TestCase
             $eol .
             "{ \"type\": \"test\" }";
 
-        $this->assertSame($expectedFormat, $formattedRequest);
+        $this->assertSame($expectedFormattedRequest, $actualFormattedRequest);
     }
 }

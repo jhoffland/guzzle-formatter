@@ -55,6 +55,18 @@ $client = new Client([
 $client->get('https://github.com/jhoffland/guzzle-formatter');
 ```
 
+### Available options
+
+#### 1. End of Line character
+
+Available when creating an instance of [`RequestFormatter`](src/RequestFormatter.php) & [`ResponseFormatter`](src/ResponseFormatter.php).
+
+#### 2. Hide sensitive headers
+
+Available for when formatting an HTTP message with [`RequestFormatter`](src/RequestFormatter.php) & [`ResponseFormatter`](src/ResponseFormatter.php) & when creating an instance of [`HttpFormatterMiddleware`](src/Middleware/HttpFormatterMiddleware.php).<br />
+The headers seen as sensitive can be found in the array [`Formatter::SENSITIVE_HEADERS`](src/Fo).
+
+
 ## Supported PHP & package versions
 
 Check the `composer.json` file for the supported PHP & package versions.<br />
@@ -71,6 +83,9 @@ When opening a pull request, please make sure that:
 - The [StyleCI](https://github.styleci.io/repos/470917304) analysis pass;
 - The PHPUnit tests pass.
 
+
 ## ToDo's
 
+- [ ] Add test for formatting request when making an request to an URL without path (e.g. to https://google.com instead of to https://google.com/).
+- [ ] Add test for hiding and not-hiding sensitive headers when using the `HttpFormatterMiddleware`.
 - [ ] Add cURL formatter.

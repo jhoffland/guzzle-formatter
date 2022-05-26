@@ -6,9 +6,9 @@ use Psr\Http\Message\ResponseInterface;
 
 class ResponseFormatter extends Formatter
 {
-    public function http(ResponseInterface $response): string
+    public function http(ResponseInterface $response, bool $hideSensitiveHeaders = true): string
     {
-        return $this->formatHttp($response, $this->startLine($response));
+        return $this->formatHttpMessage($response, $this->startLine($response), $hideSensitiveHeaders);
     }
 
     private function startLine(ResponseInterface $response): string

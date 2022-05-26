@@ -6,20 +6,25 @@ use Psr\Http\Message\MessageInterface;
 
 abstract class Formatter
 {
-    const DEFAULT_EOL = "\r\n";
+    public const DEFAULT_EOL = "\r\n";
+
+    private const SENSITIVE_HEADERS = ['authorization', 'set-cookie', 'cookie'];
 
     protected string $eol;
 
-    public function __construct($eol = self::DEFAULT_EOL)
+    public function __construct(string $eol = self::DEFAULT_EOL)
     {
         $this->eol = $eol;
     }
 
-    protected function formatHttp(MessageInterface $message, string $startLine): string
-    {
+    protected function formatHttpMessage(
+        MessageInterface $message,
+        string $startLine,
+        bool $hideSensitiveHeaders
+    ): string {
         $httpMessage = $startLine;
         $httpMessage .= $this->eol;
-        $httpMessage .= $this->headers($message);
+        $httpMessage .= $this->headers($message, $hideSensitiveHeaders);
 
         $body = $this->body($message);
         if (! is_null($body)) {
@@ -30,12 +35,16 @@ abstract class Formatter
         return $httpMessage;
     }
 
-    private function headers(MessageInterface $message): string
+    private function headers(MessageInterface $message, bool $hideSensitiveHeaders): string
     {
         $headerLines = [];
 
         foreach ($message->getHeaders() as $name => $values) {
             foreach ($values as $value) {
+                if ($hideSensitiveHeaders && in_array(strtolower($name), self::SENSITIVE_HEADERS)) {
+                    $value = '[HIDDEN]';
+                }
+
                 $headerLines[] = sprintf('%s: %s', $name, $value);
             }
         }

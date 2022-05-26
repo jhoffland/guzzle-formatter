@@ -2,6 +2,7 @@
 
 namespace GuzzleFormatter\Middleware;
 
+use GuzzleFormatter\Formatter;
 use GuzzleFormatter\RequestFormatter;
 use GuzzleFormatter\ResponseFormatter;
 use GuzzleHttp\Middleware;
@@ -13,12 +14,21 @@ use Psr\Http\Message\ResponseInterface;
  */
 class HttpFormatterMiddleware extends FormatterMiddleware
 {
+    private bool $hideSensitiveHeaders;
+
+    public function __construct(string $filePath, bool $hideSensitiveHeaders = true)
+    {
+        parent::__construct($filePath);
+
+        $this->hideSensitiveHeaders = $hideSensitiveHeaders;
+    }
+
     public function requests(): callable
     {
-        $requestFormatter = new RequestFormatter();
+        $requestFormatter = new RequestFormatter(Formatter::DEFAULT_EOL);
 
         return Middleware::mapRequest(function (RequestInterface $request) use ($requestFormatter) {
-            $this->writeToFile($requestFormatter->http($request), 'REQUEST');
+            $this->writeToFile($requestFormatter->http($request, $this->hideSensitiveHeaders), 'REQUEST');
 
             return $request;
         });
@@ -26,10 +36,10 @@ class HttpFormatterMiddleware extends FormatterMiddleware
 
     public function responses(): callable
     {
-        $responseFormatter = new ResponseFormatter();
+        $responseFormatter = new ResponseFormatter(Formatter::DEFAULT_EOL);
 
         return Middleware::mapResponse(function (ResponseInterface $response) use ($responseFormatter) {
-            $this->writeToFile($responseFormatter->http($response), 'RESPONSE');
+            $this->writeToFile($responseFormatter->http($response, $this->hideSensitiveHeaders), 'RESPONSE');
 
             return $response;
         });
