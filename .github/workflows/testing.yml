@@ -10,16 +10,24 @@ jobs:
   phpunit:
     strategy:
       matrix:
-        php-versions: [ '7.4' ]
-    name: Run PHPUnit tests with PHP version ${{ matrix.php-versions }}
-    runs-on: ubuntu-18.04
+        versions:
+          - os: 'ubuntu-18.04'
+            php: '7.4'
+          - os: 'ubuntu-18.04'
+            php: '8.0'
+          - os: 'ubuntu-18.04'
+            php: '8.1'
+          - os: 'ubuntu-22.04'
+            php: '8.1'
+    name: Run PHPUnit tests on OS ${{ matrix.versions.os }} with PHP version ${{ matrix.versions.php }}
+    runs-on: ${{ matrix.versions.os }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ matrix.versions.php }}
       - name: Check PHP version
         run: php -v
       - name: Composer install

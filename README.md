@@ -8,6 +8,9 @@ PHP library for formatting Guzzle requests and responses to [HTTP messages](http
 
 ## Installation
 
+[![Latest stable version](http://poser.pugx.org/jhoffland/guzzle-formatter/v)](https://packagist.org/packages/jhoffland/guzzle-formatter)
+[![Total downloads](http://poser.pugx.org/jhoffland/guzzle-formatter/downloads)](https://packagist.org/packages/jhoffland/guzzle-formatter)
+
 Install this library directly with Composer:
 
 ```shell
@@ -64,12 +67,17 @@ Available when creating an instance of [`RequestFormatter`](src/RequestFormatter
 #### 2. Hide sensitive headers
 
 Available for when formatting an HTTP message with [`RequestFormatter`](src/RequestFormatter.php) & [`ResponseFormatter`](src/ResponseFormatter.php) & when creating an instance of [`HttpFormatterMiddleware`](src/Middleware/HttpFormatterMiddleware.php).<br />
-The headers seen as sensitive can be found in the array [`Formatter::SENSITIVE_HEADERS`](src/Fo).
+The headers seen as sensitive can be found in the array [`Formatter::SENSITIVE_HEADERS`](src/Formatter.php).
 
 
 ## Supported PHP & package versions
 
-Check the `composer.json` file for the supported PHP & package versions.<br />
+[![PHP version](http://poser.pugx.org/jhoffland/guzzle-formatter/require/php)](composer.json)
+[![Guzzle version](https://poser.pugx.org/jhoffland/guzzle-formatter/require/guzzlehttp/guzzle)](composer.json)
+
+This library is tested with PHP 7.4, 8.0 and 8.1.<br />
+Check the [`composer.json`](composer.json) file for the supported package versions.
+
 Feel free to add support for additional versions to this library.
 
 
